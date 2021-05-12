@@ -1,0 +1,17 @@
+Source: salutem
+Section: base
+Priority: optional
+Maintainer: Uvos <carl@uvos.xyz>
+Build-Depends:
+ debhelper-compat (= 12),
+ qt5-qmake,
+ qt5-default,
+Standards-Version: 4.3.0
+
+Package: salutem
+Architecture: any
+Multi-arch: same
+Depends:
+ libqt5gui5,
+ libqt5core5a,
+Description: This provides a greeter for maemo leste
