@@ -30,4 +30,4 @@ endif()
 target_link_libraries(salutem PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 install(FILES salutem.html DESTINATION share)
-install(FILES salutem.sh TYPE BIN)
+install(FILES salutem.sh TYPE BIN DESTINATION RUNTIME)
