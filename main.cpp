@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
 	QCoreApplication::setOrganizationName("UVOS");
 	QCoreApplication::setOrganizationDomain("uvos.xyz");
-	QCoreApplication::setApplicationName("LesteGreeter");
+	QCoreApplication::setApplicationName("Salutem");
 	QCoreApplication::setApplicationVersion("0.1");
 
 	QCommandLineParser parser;
