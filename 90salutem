@@ -1,0 +1,5 @@
+#!/bin/sh
+
+salutem -o -t /usr/share/salutem.html > ~/.salutem.log &
+
+
