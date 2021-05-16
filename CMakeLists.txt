@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(salutem LANGUAGES CXX)
 
+set(CMAKE_INSTALL_PREFIX /usr)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -30,4 +32,4 @@ endif()
 target_link_libraries(salutem PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 install(FILES salutem.html DESTINATION share)
-install(FILES salutem.sh TYPE BIN DESTINATION RUNTIME)
+install(TARGETS salutem DESTINATION bin)
