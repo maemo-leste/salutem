@@ -24,6 +24,21 @@
 #include <QTextDocument>
 #include <QFile>
 #include <QTextStream>
+#include <QCryptographicHash>
+#include <QStandardPaths>
+
+QByteArray fileChecksum(const QString &fileName, 
+                        QCryptographicHash::Algorithm hashAlgorithm)
+{
+    QFile f(fileName);
+    if (f.open(QFile::ReadOnly)) {
+        QCryptographicHash hash(hashAlgorithm);
+        if (hash.addData(&f)) {
+            return hash.result();
+        }
+    }
+    return QByteArray();
+}
 
 int main(int argc, char *argv[])
 {
@@ -40,6 +55,8 @@ int main(int argc, char *argv[])
 	parser.addVersionOption();
 	QCommandLineOption textOption(QStringList() << "t" << "text", QCoreApplication::translate("main", "Specify html file to use"), "filename");
 	parser.addOption(textOption);
+	QCommandLineOption onceOption(QStringList() << "o" << "once", QCoreApplication::translate("main", "show given file only once"));
+	parser.addOption(onceOption);
 	parser.process(a);
 
 	if(!parser.isSet(textOption)) {
@@ -53,12 +70,52 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	QTextStream in(&file);
+	QString textString(in.readAll());
+	file.close();
+	
+	if(parser.isSet(onceOption)) {
+		QFile readFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/salutem-ran");
+		if(readFile.open(QIODevice::ReadOnly)) {
+			QTextStream readFileTx(&readFile);
+			QString md5(readFileTx.readLine());
+			QCryptographicHash hash(QCryptographicHash::Md5);
+			hash.addData(textString.toUtf8());
+			readFile.close();
+			
+			if(md5.toLatin1() == hash.result().toHex())
+				return 0;
+			else
+				file.remove();
+		}
+	}
 
 	QTextDocument text;
-	text.setHtml(in.readAll());
-	file.close();
+	text.setHtml(textString);
 
 	MainWindow w(&text);
 	w.show();
-	return a.exec();
+	
+	int ret = a.exec();
+	
+	if(parser.isSet(onceOption)) {
+		QFile readFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/salutem-ran");
+		if(readFile.open(QIODevice::WriteOnly)) {
+			QTextStream readFileTx(&readFile);
+			QCryptographicHash hash(QCryptographicHash::Md5);
+			hash.addData(textString.toUtf8());
+			readFileTx<<hash.result().toHex();
+			readFile.close();
+			std::cout<<"saved md5 sum to "
+					 <<(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/salutem-ran").toStdString()
+					 <<'\n';
+		}
+		else {
+			std::cout<<"Can not open "
+					 <<(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/salutem-ran").toStdString()
+					 <<'\n';
+			return -1;
+		}
+	}
+	
+	return ret;
 }
