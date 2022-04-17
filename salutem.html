@@ -1,21 +1,35 @@
+<h1 id="2022-04-update">Maemo Leste update 2022-04</h1>
+
+We have published a major update to our mobile operating system, check it out
+<a href="https://maemo-leste.github.io/maemo-leste-sixteenth-update-november-and-december-2021-january-april-2022.html">here</a>.
+
 <h1 id="expand-the-root-partition-to-fill-sd-card">Expand partition to fill SD card</h1>
+
 <p>A helpful script is included to expand the root partition to fill the microSD card.
 After booting and logging in to root, execute: /etc/expandcard.sh</p>
 <p>This will expand the root partition to fill the microSD card using resize2fs.</p>
+
 <h1 id="-ssh-login-">(SSH) Login</h1>
 <p>User credentials are: &#39;&#39;&#39;user:user&#39;&#39;&#39;</p>
 <p>Root credentials are: &#39;&#39;&#39;root:toor&#39;&#39;&#39;</p>
 <p>You should prefer logging in as user and then escalating to root with sudo as necessary.</p>
 <p>In images newer than 17 January 2021, root SSH is disabled by default.</p>
+
 <h1 id="useful-bits">Useful Bits</h1>
 <ul>
-<li>Default lockcode is &quot;12345&quot;</li>
-<li>Lockcode can only be changed if your hardware has CAL. QEMU does not have CAL. Droid 4 also not.</li>
+    <li>Default lockcode is &quot;12345&quot;</li>
+    <li>Lockcode can only be changed if your hardware has CAL. QEMU does not have CAL. Droid 4 also not.</li>
 </ul>
+
 <h1 id="activateing-some-swap">Activateing some swap</h1>
-<p>You can install &#39;&#39;&#39;zram-tools&#39;&#39;&#39; from the repo, and edit &#39;&#39;&#39;/etc/default/zramswap&#39;&#39;&#39; as necessary. It&#39;s probably convenient to set allocation to 1024.
-hildon-base (and it&#39;s hildon-env-setup initscript) are aware if zramswap in installed and will activate zram.
-If you have an image older than 17 January 2021, you should remove the existing zram initscript and install zram-tools to utilize this functionality.</p>
+<p>You can install &#39;&#39;&#39;zram-tools&#39;&#39;&#39; from the repo, and
+edit &#39;&#39;&#39;/etc/default/zramswap&#39;&#39;&#39; as necessary. It&#39;s
+probably convenient to set allocation to 1024.
+hildon-base (and it&#39;s hildon-env-setup initscript) are aware if zramswap in
+installed and will activate zram.  If you have an image older than 17 January
+2021, you should remove the existing zram initscript and install zram-tools to
+utilize this functionality.</p>
+
 <h2 id="remove-it-with-">Remove it with:</h2>
 <p> rc-update del zram
- rm /etc/init.d/zram</p>
+rm /etc/init.d/zram</p>
