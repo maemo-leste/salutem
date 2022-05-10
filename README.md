@@ -1,7 +1,8 @@
 # salutem
-greeter app for mameo leste
+Greeter application for Maemo Leste
 
-this application displays /usr/share/salutem.html when run and then stores its md5 sum in ~/.config/salutem-ran
-if the md5 sum of /usr/share/salutem.html is allready the same as the one in ~/.config/salutem-ran it simply exits
+This application will display /usr/share/salutem.html when run and stores its MD5 sum in ~/.config/salutem-ran after displaying.
 
-usage: salutem -o -t \<path-to-html-file\>
+If the MD5 sum of /usr/share/salutem.html is already the same as the one in ~/.config/salutem-ran it directly exits. Else it will display the new .html.
+
+Usage: salutem -o -t \<path-to-html-file\>
