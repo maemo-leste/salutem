@@ -21,7 +21,7 @@ After booting and logging in to root, execute: /etc/expandcard.sh</p>
     <li>Lockcode can only be changed if your hardware has CAL. QEMU does not have CAL. Droid 4 also not.</li>
 </ul>
 
-<h1 id="activateing-some-swap">Activateing some swap</h1>
+<h1 id="activating-some-swap">Activating some swap</h1>
 <p>You can install &#39;&#39;&#39;zram-tools&#39;&#39;&#39; from the repo, and
 edit &#39;&#39;&#39;/etc/default/zramswap&#39;&#39;&#39; as necessary. It&#39;s
 probably convenient to set allocation to 1024.
@@ -31,5 +31,5 @@ installed and will activate zram.  If you have an image older than 17 January
 utilize this functionality.</p>
 
 <h2 id="remove-it-with-">Remove it with:</h2>
-<p> rc-update del zram
-rm /etc/init.d/zram</p>
+<pre> rc-update del zram<br>
+rm /etc/init.d/zram</pre>
