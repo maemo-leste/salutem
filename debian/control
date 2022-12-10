@@ -5,7 +5,7 @@ Maintainer: Uvos <carl@uvos.xyz>
 Build-Depends:
  debhelper-compat (= 12),
  qt5-qmake,
- qt5-default,
+ qtbase5-dev,
 Standards-Version: 4.3.0
 
 Package: salutem
