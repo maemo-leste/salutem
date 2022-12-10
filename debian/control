@@ -6,6 +6,7 @@ Build-Depends:
  debhelper-compat (= 12),
  qt5-qmake,
  qtbase5-dev,
+ cmake
 Standards-Version: 4.3.0
 
 Package: salutem
