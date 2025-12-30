@@ -12,7 +12,5 @@ Standards-Version: 4.3.0
 Package: salutem
 Architecture: any
 Multi-arch: same
-Depends:
- libqt5gui5,
- libqt5core5a,
+Depends: ${shlibs:Depends}, ${misc:Depends},
 Description: This provides a greeter for maemo leste
